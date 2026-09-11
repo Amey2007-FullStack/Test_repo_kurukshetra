@@ -1,0 +1,28 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.acme.test</groupId>
+    <artifactId>depscan-test-maven</artifactId>
+    <version>1.0.0</version>
+    <name>depscan-test-maven</name>
+    <description>Synthetic Depscan test fixture for Maven ecosystem</description>
+
+    <dependencies>
+        <!-- SYNTHETIC TEST SIGNAL: Dependency Confusion -->
+        <!-- Internal-looking groupId 'com.acme.internal' with no private repository or repository scoping configuration -->
+        <dependency>
+            <groupId>com.acme.internal</groupId>
+            <artifactId>utils-core</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+
+        <!-- BASELINE CLEAN DEPENDENCY: Reputable public package -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
+    </dependencies>
+</project>

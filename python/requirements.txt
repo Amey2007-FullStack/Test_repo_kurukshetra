@@ -1,0 +1,9 @@
+# Depscan Test Fixture - Python Ecosystem
+
+# SYNTHETIC TEST SIGNAL: Typosquatting package
+# 'colourama' is a typosquatting variant of the legitimate 'colorama' package (PyPI incident 2022)
+# SYNTHETIC TEST CASE - DOES NOT CONTAIN EXPLOIT CODE
+colourama==0.4.6
+
+# BASELINE CLEAN DEPENDENCY: Fully-pinned, reputable package
+requests==2.31.0

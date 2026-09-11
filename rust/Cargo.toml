@@ -1,0 +1,12 @@
+[package]
+name = "depscan-test-rust"
+version = "0.1.0"
+edition = "2021"
+description = "Synthetic Depscan test fixture for Rust ecosystem"
+
+[dependencies]
+# SYNTHETIC TEST SIGNAL: Build/provenance issue variant (git source dependency without commit hash pin)
+unhashed-git-pkg = { git = "https://github.com/example/unhashed-git-pkg.git" }
+
+# BASELINE CLEAN DEPENDENCY: Normal crates.io pinned version
+serde = "1.0.195"

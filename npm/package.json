@@ -1,0 +1,13 @@
+{
+  "name": "depscan-test-npm",
+  "version": "1.0.0",
+  "description": "Synthetic Depscan test fixture for npm ecosystem",
+  "private": true,
+  "scripts": {
+    "postinstall": "node scripts/postinstall-helper.js"
+  },
+  "dependencies": {
+    "express": "4.18.2",
+    "lodash": "4.17.15"
+  }
+}
