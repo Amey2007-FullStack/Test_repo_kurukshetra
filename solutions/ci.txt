@@ -2,9 +2,9 @@
 REMEDIATION SOLUTION GUIDE: CI / GITHUB ACTIONS ECOSYSTEM
 ===============================================================================
 
-Target File: ci/ci.yml and .github/workflows/ci.yml
+Target Files: ci/ci.yml, .github/workflows/ci.yml
 Ecosystem: CI / CD (GitHub Actions Workflows)
-Detection Modules: ci-security, workflow-linter, secret-scanner, injection-detector
+Detection Modules: ci-security, workflow-linter, script-injection
 
 -------------------------------------------------------------------------------
 PLANTED VULNERABILITIES & RISKS
@@ -38,7 +38,8 @@ Step 1: Enforce Minimal Workflow Permissions (Principle of Least Privilege)
      ```
 
 Step 2: Pin GitHub Actions to Immutable 40-Character Commit SHAs
-   - Replace `uses: actions/checkout@v1` with a pinned SHA version (e.g. `uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1`).
+   - Replace `uses: actions/checkout@v1` with a pinned SHA version:
+     `uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1`
 
 Step 3: Remediate Script Injection via Environment Variables
    - Pass untrusted context variables through environment variables (`env:`) instead of inline expression syntax `${{ ... }}` inside `run:` blocks.
