@@ -46,3 +46,15 @@ Step-by-step remediation solutions for every ecosystem vulnerability are stored 
    - **Signal:** Build/provenance issue variant (`unhashed-git-pkg` referenced via Git repository source without commit hash in `Cargo.toml`; checksum omitted from `Cargo.lock`).
    - **Baseline Clean:** `serde = "1.0.195"`.
    - **Solution File:** [`solutions/rust.txt`](file:///c:/Users/Amey%20deshpande/OneDrive/Documents/Desktop/Test_repo_kurukshetra/solutions/rust.txt)
+
+6. **`ci/` (CI / GitHub Actions Ecosystem)**
+   - **Signal:** Workflow security issues (`ci/ci.yml` / `.github/workflows/ci.yml` with `permissions: write-all`, unpinned `actions/checkout@v1`, script injection via `${{ github.event.issue.title }}`).
+   - **Baseline Clean:** `actions/setup-node@60ed15dd545567308fd97607dd34592938fd900f` (pinned SHA with node-version).
+   - **Solution File:** [`solutions/ci.txt`](file:///c:/Users/Amey%20deshpande/OneDrive/Documents/Desktop/Test_repo_kurukshetra/solutions/ci.txt)
+
+---
+
+## Complete Remediation Master Document
+
+A single comprehensive text file covering all ecosystem vulnerabilities and step-by-step remediation steps is available at [`VULNERABILITIES_AND_SOLUTIONS.txt`](file:///c:/Users/Amey%20deshpande/OneDrive/Documents/Desktop/Test_repo_kurukshetra/VULNERABILITIES_AND_SOLUTIONS.txt).
+

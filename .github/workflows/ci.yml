@@ -1,0 +1,33 @@
+# Depscan Test Fixture - CI / GitHub Actions Ecosystem
+# SYNTHETIC TEST FIXTURE FOR CI SCANNING - DOES NOT RUN IN PRODUCTION
+
+name: Depscan CI Test Fixture Workflow
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request_target:
+    types: [ opened, synchronize ]
+
+# SYNTHETIC TEST SIGNAL 1: Overly permissive workflow permissions
+permissions: write-all
+
+jobs:
+  build-and-scan:
+    runs-on: ubuntu-latest
+    steps:
+      # SYNTHETIC TEST SIGNAL 2: Unpinned / Outdated Action version (using mutable branch tag)
+      - name: Checkout Repository
+        uses: actions/checkout@v1
+
+      # BASELINE CLEAN STEP: Immutable SHA pinned official action with explicit scope
+      - name: Setup Node Environment (Clean Baseline)
+        uses: actions/setup-node@60ed15dd545567308fd97607dd34592938fd900f # v4.0.0
+        with:
+          node-version: '20'
+
+      # SYNTHETIC TEST SIGNAL 3: Script Injection vulnerability via untrusted context expansion
+      - name: Process PR Information (Vulnerable Inline Shell Context)
+        run: |
+          echo "Processing PR Title: ${{ github.event.issue.title }}"
+          echo "Commit Message: ${{ github.event.head_commit.message }}"

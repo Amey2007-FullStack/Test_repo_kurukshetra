@@ -1,0 +1,41 @@
+===============================================================================
+REMEDIATION SOLUTION GUIDE: NPM ECOSYSTEM
+===============================================================================
+
+Target Files: npm/package.json, npm/package-lock.json, npm/scripts/postinstall-helper.js
+Ecosystem: Node.js / npm
+Detection Modules: known-vuln scan, suspicious behavior analysis
+
+-------------------------------------------------------------------------------
+PLANTED VULNERABILITIES & RISKS
+-------------------------------------------------------------------------------
+
+1. KNOWN VULNERABLE DEPENDENCY: lodash@4.17.15 (CVE-2020-8203)
+   - Risk Level: High (Severity Score: 7.4)
+   - Description: Prototype Pollution vulnerability in lodash before 4.17.19 allows attackers to modify object prototype properties via crafted payload.
+
+2. SUSPICIOUS LIFE-CYCLE SCRIPT: postinstall hook running postinstall-helper.js
+   - Risk Level: High / Medium
+   - Description: Execution of arbitrary JS code during npm installation hooks can lead to code execution attacks.
+
+-------------------------------------------------------------------------------
+STEP-BY-STEP REMEDIATION SOLUTION
+-------------------------------------------------------------------------------
+
+Step 1: Upgrade lodash Dependency
+   - In `npm/package.json`, update lodash version from `"4.17.15"` to `"4.17.21"`.
+   - Update `npm/package-lock.json` to lock `lodash` at `4.17.21` with valid integrity hashes.
+
+Step 2: Remove Suspicious Life-Cycle Script
+   - Remove `"postinstall": "node scripts/postinstall-helper.js"` from `"scripts"` in `npm/package.json`.
+   - Delete `npm/scripts/postinstall-helper.js` or replace it with safe build scripts.
+   - Run `npm ci --ignore-scripts` in CI pipelines to prevent hook execution.
+
+-------------------------------------------------------------------------------
+VERIFICATION
+-------------------------------------------------------------------------------
+
+- Run `npm audit` inside the `npm/` folder to ensure 0 vulnerabilities are reported.
+- Run `depscan --path npm/` to verify zero security flags.
+
+===============================================================================

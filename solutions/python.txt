@@ -1,0 +1,36 @@
+===============================================================================
+REMEDIATION SOLUTION GUIDE: PYTHON ECOSYSTEM
+===============================================================================
+
+Target File: python/requirements.txt
+Ecosystem: Python / PyPI
+Detection Module: typosquat check
+
+-------------------------------------------------------------------------------
+PLANTED VULNERABILITY & RISK
+-------------------------------------------------------------------------------
+
+TYPOSQUATTING PACKAGE: colourama==0.4.6
+   - Risk Level: High
+   - Description: 'colourama' is a malicious typosquatting package mimicking the legitimate 'colorama' library (based on PyPI security incident).
+
+-------------------------------------------------------------------------------
+STEP-BY-STEP REMEDIATION SOLUTION
+-------------------------------------------------------------------------------
+
+Step 1: Replace Typosquatted Dependency Name
+   - Open `python/requirements.txt`.
+   - Delete line containing `colourama==0.4.6`.
+   - Add legitimate package: `colorama==0.4.6`.
+
+Step 2: Clean Environment
+   - Run `pip uninstall colourama` if installed in python environment.
+   - Run `pip install -r requirements.txt` to install legitimate dependencies.
+
+-------------------------------------------------------------------------------
+VERIFICATION
+-------------------------------------------------------------------------------
+
+- Run `pip audit` or `depscan --path python/` to ensure no typosquatting alerts remain.
+
+===============================================================================

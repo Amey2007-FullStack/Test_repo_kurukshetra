@@ -1,0 +1,30 @@
+===============================================================================
+REMEDIATION SOLUTION GUIDE: MAVEN ECOSYSTEM
+===============================================================================
+
+Target File: maven/pom.xml
+Ecosystem: Java / Maven
+Detection Module: dependency confusion
+
+-------------------------------------------------------------------------------
+PLANTED VULNERABILITY & RISK
+-------------------------------------------------------------------------------
+
+DEPENDENCY CONFUSION RISK: com.acme.internal:utils-core:1.0.0
+   - Risk Level: High
+   - Description: Referencing internal package groupId 'com.acme.internal' without a private repository configuration exposes builds to public repo hijacking if an attacker uploads a higher version of 'com.acme.internal:utils-core' to Maven Central.
+
+-------------------------------------------------------------------------------
+STEP-BY-STEP REMEDIATION SOLUTION
+-------------------------------------------------------------------------------
+
+Step 1: Configure Private Internal Repository in pom.xml / settings.xml
+   - Add explicit `<repositories>` block directing internal groupIds to private repository (e.g. Nexus/Artifactory).
+
+Step 2: Mirror and Block Public Repository Scoping
+   - In Maven `settings.xml`, define mirror rules so `com.acme.internal` artifacts are strictly resolved from internal feeds and blocked from Maven Central.
+
+Step 3: Clean Pom Configuration
+   - Ensure explicit repository scoping or use enterprise repository management.
+
+===============================================================================
